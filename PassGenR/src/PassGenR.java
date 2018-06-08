@@ -75,7 +75,7 @@ public class PassGenR {
 			} else if (args[i].indexOf("-A") != -1) {
 				generating += A;
 			}
-		}
+		} 
 		if (menu== false ) {
 			if (generating.length() == 0) {
 				generating = N + U + L;

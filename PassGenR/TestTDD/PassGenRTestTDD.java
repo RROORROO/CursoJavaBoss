@@ -49,16 +49,45 @@ public class PassGenRTestTDD {
 		PassGenR cr = new PassGenR();
 		String pass = "aqswderf";
 		String[] result = cr.passGenerateR(quantityPasswords, passwLength, pass);
-		//System.out.println(result.length);
 		assertEquals(expected, result.length);
 	}
 	@Test
 	public void testpasswLength() {
-		PassGenR cr = new PassGenR();
+		PassGenR cr2 = new PassGenR();
 		String pass = "aqswderf";
-		String result = cr.passGenerateR(quantityPasswords, quantityPasswords, pass)[0];
-		//System.out.println(result.length);
+		String result = cr2.passGenerateR(quantityPasswords, quantityPasswords, pass)[0];
 		assertEquals(expected, result.length());
 	}
+	@Test
+	public void testpasswCharactersNumbers() {
+		PassGenR cr3 = new PassGenR();
+		String pass = "1234567890";
+		String[] result = cr3.passGenerateR(1, 16, pass);
+		boolean validate = result[0].matches("\\d*");
+		assertEquals(true, validate );
+	}
+	@Test
+	public void testpasswCharactersAlpha() {
+		PassGenR cr4 = new PassGenR();
+		String pass = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		String[] result = cr4.passGenerateR(1, 16, pass);
+		boolean validate = result[0].matches("[A-Z]*");
+		assertEquals(true, validate );
 
+	}
+	@Test
+	public void testpasswCharactersAlphalw() {
+		PassGenR cr4 = new PassGenR();
+		String pass = "abcdefghijklmnopqrstuvwxyz";
+		String[] result = cr4.passGenerateR(1, 16, pass);
+		boolean validate = result[0].matches("[a-z]*");
+		assertEquals(true, validate );
+	}
+	@Test
+	public void testpasswCharactersSymbol() {
+		PassGenR cr5 = new PassGenR();
+		String pass = "|@#~$%()=^*+[]{}-_?¿";
+		String[] result = cr5.passGenerateR(1, 16, pass);
+		assertEquals(result[0], result[0]);
+	}
 }
