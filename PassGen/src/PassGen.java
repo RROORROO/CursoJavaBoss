@@ -3,8 +3,15 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
 public class PassGen {
+	
+	String U = "ABCDEFGHIJKLNMOPQRSTUVWXYZ";
+	String L = "abcdefghijklmnopqrstuvwxyz";
+	String S = "|@#~$%()=^*+[]{}-_?¿";
+	String N = "1234567890";
+	String A = "ABCDEFGHJKNMPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
+	
 
-	public String[] passGenerateR(int quantity, int pass, String generate) {
+	public String[] passGenerate(int quantity, int pass, String generate) {
 		String pswd = "";
 		String[] newPswd = new String[quantity];
 		int numRan = 0;
@@ -29,7 +36,7 @@ public class PassGen {
 		return false;
 	}//
 
-	public void board(String Pass) {
+	private void board(String Pass) {
 
 		StringSelection selection = new StringSelection(Pass);
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -41,15 +48,11 @@ public class PassGen {
 		return Integer.parseInt(joined[1]);
 	}
 
-	public static void main(String[] args) {
+	public String startPassword(String[] args) {
 		PassGen cr = new PassGen();
 		HelpMenu ls = new HelpMenu();
-		String U = "ABCDEFGHIJKLNMOPQRSTUVWXYZ";
-		String L = "abcdefghijklmnopqrstuvwxyz";
-		String S = "|@#~$%()=^*+[]{}-_?¿";
-		String N = "1234567890";
-		String A = "ABCDEFGHJKNMPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
 		boolean menu = false;
+		String[] newResultPass= {}; 
 		int length = 16;
 		int totalPass = 1;
 		boolean itContains = false;
@@ -80,15 +83,14 @@ public class PassGen {
 			if (generating.length() == 0) {
 				generating = N + U + L;
 			}
-			String[] newResultPass = cr.passGenerateR(totalPass, length, generating);
+			newResultPass = cr.passGenerate(totalPass, length, generating);
 			for (int i = 0; i < newResultPass.length; i++) {
 				System.out.println(newResultPass[i]);
 				if (itContains == true) {
-					cr.board(newResultPass[i]);
-				
+					cr.board(newResultPass[i]);	
 				}
 			}
 		}  
-
+		return newResultPass[0];
 	}
 }
