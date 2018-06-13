@@ -34,7 +34,7 @@ public class PassGen {
 		if (pswd.matches("^(?=\\w*[0-9])(?=\\w*[A-Z])(?=\\w*[a-z])\\S{1,}$"))
 			return true;
 		return false;
-	}//
+	}
 
 	private void board(String Pass) {
 
