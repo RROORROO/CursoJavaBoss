@@ -2,7 +2,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 
-public class PassGenR {
+public class PassGen {
 
 	public String[] passGenerateR(int quantity, int pass, String generate) {
 		String pswd = "";
@@ -42,7 +42,7 @@ public class PassGenR {
 	}
 
 	public static void main(String[] args) {
-		PassGenR cr = new PassGenR();
+		PassGen cr = new PassGen();
 		HelpMenu ls = new HelpMenu();
 		String U = "ABCDEFGHIJKLNMOPQRSTUVWXYZ";
 		String L = "abcdefghijklmnopqrstuvwxyz";
@@ -62,7 +62,7 @@ public class PassGenR {
 			} else if (args[i].indexOf("-Copy") != -1) {
 				itContains = true;
 			} else if (args[i].indexOf("-?") != -1) {
-				ls.menu(null);
+				ls.menu();
 				menu = true;
 			} else if (args[i].indexOf("-U") != -1) {
 				generating += U;

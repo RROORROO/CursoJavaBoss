@@ -1,7 +1,7 @@
 
 public class HelpMenu {
 	
-	public void menu (String Pass) {
+	public void menu () {
 		System.out.println("      ****** BIENVENIDO AL GENERADOR DE CONTRASEÑAS 3000 ******\n "
 				+ "Esta es la lista de opciones que usted puede utilizar para generar su contraseña \n "
 				+ "-A             Genera contraseña con mayusculas, minusculas y numeros excluyendo caracteres ambíguos como (i, I, L, l, 1, o, O, 0)\n"

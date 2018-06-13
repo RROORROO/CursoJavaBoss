@@ -8,7 +8,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(value = Parameterized.class)
-public class PassGenRTestTDD {
+public class test {
 
 	@Parameters
 	public static Iterable<Object[]> getData() {
@@ -37,7 +37,7 @@ public class PassGenRTestTDD {
 	}
 
 	private int quantityPasswords, passwLength, expected; 
-	public PassGenRTestTDD(int quantityPasswords, int passwLength, int expected) {
+	public test(int quantityPasswords, int passwLength, int expected) {
 
 		this.quantityPasswords = quantityPasswords;
 		this.passwLength = passwLength;
@@ -46,21 +46,21 @@ public class PassGenRTestTDD {
 
 	@Test
 	public void testquantity() {
-		PassGenR cr = new PassGenR();
+		PassGen cr = new PassGen();
 		String pass = "aqswderf";
 		String[] result = cr.passGenerateR(quantityPasswords, passwLength, pass);
 		assertEquals(expected, result.length);
 	}
 	@Test
 	public void testpasswLength() {
-		PassGenR cr2 = new PassGenR();
+		PassGen cr2 = new PassGen();
 		String pass = "aqswderf";
 		String result = cr2.passGenerateR(quantityPasswords, quantityPasswords, pass)[0];
 		assertEquals(expected, result.length());
 	}
 	@Test
 	public void testpasswCharactersNumbers() {
-		PassGenR cr3 = new PassGenR();
+		PassGen cr3 = new PassGen();
 		String pass = "1234567890";
 		String[] result = cr3.passGenerateR(1, 16, pass);
 		boolean validate = result[0].matches("\\d*");
@@ -68,7 +68,7 @@ public class PassGenRTestTDD {
 	}
 	@Test
 	public void testpasswCharactersAlpha() {
-		PassGenR cr4 = new PassGenR();
+		PassGen cr4 = new PassGen();
 		String pass = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		String[] result = cr4.passGenerateR(1, 16, pass);
 		boolean validate = result[0].matches("[A-Z]*");
@@ -77,7 +77,7 @@ public class PassGenRTestTDD {
 	}
 	@Test
 	public void testpasswCharactersAlphalw() {
-		PassGenR cr4 = new PassGenR();
+		PassGen cr4 = new PassGen();
 		String pass = "abcdefghijklmnopqrstuvwxyz";
 		String[] result = cr4.passGenerateR(1, 16, pass);
 		boolean validate = result[0].matches("[a-z]*");
@@ -85,7 +85,7 @@ public class PassGenRTestTDD {
 	}
 	@Test
 	public void testpasswCharactersSymbol() {
-		PassGenR cr5 = new PassGenR();
+		PassGen cr5 = new PassGen();
 		String pass = "|@#~$%()=^*+[]{}-_?¿";
 		String[] result = cr5.passGenerateR(1, 16, pass);
 		assertEquals(result[0], result[0]);
