@@ -187,4 +187,11 @@ public class test {
 		}
 		assertEquals(false,validatePass );	
 		}
+	@Test
+	public void testInputCopy() {
+		PassGen cr7 = new PassGen();
+		String [] args= {"-Copy"};
+		String result = cr7.startPassword(args);
+		assertEquals(16, result.length());
+		}
 }
