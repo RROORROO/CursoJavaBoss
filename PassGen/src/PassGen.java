@@ -71,7 +71,7 @@ public class PassGen {
 			}
 		}
 
-		return compare;
+		return compare; 
 	}
 
 	public String startPassword(String[] args) {
