@@ -1,15 +1,15 @@
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
+import java.util.Arrays;
 
 public class PassGen {
-	
+
 	String U = "ABCDEFGHIJKLNMOPQRSTUVWXYZ";
 	String L = "abcdefghijklmnopqrstuvwxyz";
 	String S = "|@#~$%()=^*+[]{}-_?¿";
 	String N = "1234567890";
-	String A = "ABCDEFGHJKNMPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
-	
+	String A = "iILl1oO0";
 
 	public String[] passGenerate(int quantity, int pass, String generate) {
 		String pswd = "";
@@ -48,11 +48,37 @@ public class PassGen {
 		return Integer.parseInt(joined[1]);
 	}
 
+	private String validateExemptions(String compare, String exmpt) {
+		String[] arraycompare = compare.split("");
+		String[] arrayexmpt = exmpt.split(":")[1].split("");
+
+		for (int i = 0; i < arrayexmpt.length; i++) {
+			if (Arrays.asList(arraycompare).contains(arrayexmpt[i])) {
+				compare = compare.replace(arrayexmpt[i], "");
+			}
+		}
+
+		return compare;
+	}
+
+	private String validateAmbiguous(String compare, String exmpt) {
+		String[] arraycompare = compare.split("");
+		String[] arrayexmpt = exmpt.split("");
+
+		for (int i = 0; i < arrayexmpt.length; i++) {
+			if (Arrays.asList(arraycompare).contains(arrayexmpt[i])) {
+				compare = compare.replace(arrayexmpt[i], "");
+			}
+		}
+
+		return compare;
+	}
+
 	public String startPassword(String[] args) {
 		PassGen cr = new PassGen();
 		HelpMenu ls = new HelpMenu();
 		boolean menu = false;
-		String[] newResultPass= {}; 
+		String[] newResultPass = {};
 		int length = 16;
 		int totalPass = 1;
 		boolean itContains = false;
@@ -76,10 +102,15 @@ public class PassGen {
 			} else if (args[i].indexOf("-S") != -1) {
 				generating += S;
 			} else if (args[i].indexOf("-A") != -1) {
-				generating += A;
+				String remove = A;
+				generating = validateAmbiguous(generating, remove);
+			} else if (args[i].indexOf("-E:") != -1) {
+				String remove = args[i];
+				generating = validateExemptions(generating, remove);
 			}
-		} 
-		if (menu== false ) {
+
+		}
+		if (menu == false) {
 			if (generating.length() == 0) {
 				generating = N + U + L;
 			}
@@ -87,10 +118,10 @@ public class PassGen {
 			for (int i = 0; i < newResultPass.length; i++) {
 				System.out.println(newResultPass[i]);
 				if (itContains == true) {
-					cr.board(newResultPass[i]);	
+					cr.board(newResultPass[i]);
 				}
 			}
-		}  
+		}
 		return newResultPass[0];
 	}
 }
